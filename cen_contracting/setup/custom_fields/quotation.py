@@ -26,7 +26,8 @@ def get_quotation_fields():
             {
                 "fieldname": "cen_payment_terms",
                 "label": "Payment Term",
-                "fieldtype": "Data",
+                "fieldtype": "Autocomplete",
+                "description": "Pick a standard term from Payment Term Option or type a different one",
                 "insert_after": "valid_till"
             },
             {

@@ -1,0 +1,90 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "hash",
+ "creation": "2026-10-16 10:00:00.000000",
+ "description": "Standard payment terms offered in the Payment Term dropdown on Quotation, Sales Order and Sales Invoice. Users can still type a different term.",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "payment_term",
+  "is_default",
+  "disabled"
+ ],
+ "fields": [
+  {
+   "fieldname": "payment_term",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Payment Term",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "0",
+   "description": "Filled in automatically on new Quotations, Sales Orders and Sales Invoices, and listed first in the dropdown",
+   "fieldname": "is_default",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Default"
+  },
+  {
+   "default": "0",
+   "fieldname": "disabled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Disabled"
+  }
+ ],
+ "grid_page_length": 50,
+ "links": [],
+ "modified": "2026-10-16 13:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Cen Contracting",
+ "name": "Payment Term Option",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "report": 1,
+   "role": "Sales User"
+  },
+  {
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User"
+  }
+ ],
+ "row_format": "Dynamic",
+ "search_fields": "payment_term",
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "payment_term"
+}
