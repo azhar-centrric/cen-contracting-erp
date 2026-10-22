@@ -6,6 +6,9 @@ def set_sales_order_properties():
     make_property_setter("Sales Order", "delivery_date", "reqd", 0, "Check")
     make_property_setter("Sales Order Item", "delivery_date", "reqd", 0, "Check")
 
+    # Hide Series for consistency with Quotation/Sales Invoice (no naming rule here yet, but kept uniform)
+    make_property_setter("Sales Order", "naming_series", "hidden", "1", "Check")
+
     # Always show Description and UOM in the items table; shrink other columns so all fit in the grid's 10 units
     make_property_setter("Sales Order Item", "description", "in_list_view", 1, "Check")
     make_property_setter("Sales Order Item", "uom", "in_list_view", 1, "Check")

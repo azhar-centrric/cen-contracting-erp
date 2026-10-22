@@ -26,7 +26,10 @@ app_license = "mit"
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/cen_contracting/css/cen_contracting.css"
-# app_include_js = "/assets/cen_contracting/js/cen_contracting.js"
+app_include_js = [
+	"/assets/cen_contracting/js/naming_series_override.js",
+	"/assets/cen_contracting/js/default_terms_and_conditions.js",
+]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/cen_contracting/css/cen_contracting.css"
@@ -149,7 +152,8 @@ doctype_js = {
 
 doc_events = {
 	"*": {
-		"before_insert": "cen_contracting.overrides.all_doctypes.letter_head_routing.set_dynamic_letter_head"
+		"before_insert": "cen_contracting.overrides.all_doctypes.letter_head_routing.set_dynamic_letter_head",
+		"onload": "cen_contracting.overrides.all_doctypes.default_terms_and_conditions.apply_default_terms"
 	},
 	"Opportunity": {
 		"validate": "cen_contracting.overrides.opportunity.project_sync.sync_projects_on_validate"
@@ -294,7 +298,13 @@ after_migrate = [
     "cen_contracting.setup.roles.admin.setup_admin_role",
     "cen_contracting.setup.property_setter.employee_advance.set_employee_advance_properties",
     "cen_contracting.setup.property_setter.sales_order.set_sales_order_properties",
-    "cen_contracting.setup.property_setter.sales_invoice.set_sales_invoice_properties"
+    "cen_contracting.setup.property_setter.sales_invoice.set_sales_invoice_properties",
+    "cen_contracting.setup.property_setter.purchase_order.set_purchase_order_properties",
+    "cen_contracting.setup.property_setter.purchase_invoice.set_purchase_invoice_properties",
+    "cen_contracting.setup.property_setter.purchase_receipt.set_purchase_receipt_properties",
+    "cen_contracting.setup.property_setter.supplier_quotation.set_supplier_quotation_properties",
+    "cen_contracting.setup.roles.restore_suppressed_permissions.restore_suppressed_standard_permissions",
+    "cen_contracting.overrides.all_doctypes.letter_head_routing.backfill_letter_head_routing"
 ]
 
 override_doctype_class = {
