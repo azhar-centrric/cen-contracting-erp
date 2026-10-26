@@ -20,7 +20,13 @@
 * **Description & UOM Always Visible:** `description` and `uom` are shown as columns in the items table (`in_list_view`) via Property Setters in `setup/property_setter/quotation.py`.
 * **Column Widths:** Item Code 2, Description 3, Qty 1, UOM 1, Rate 1, Amount 2 (the grid holds 10 units; Frappe widens columns automatically when space is free).
 
-## 5. Payment Term Dropdown
+## 5. Automatic Project Creation
+* **Trigger:** When Project Type is "New" and a Project Name has been typed, `validate` in `overrides/quotation/project_creation.py` (`create_project_for_new_type`) creates the Project as soon as the Quotation is saved, instead of relying on someone to create it manually later (e.g. from the Sales Order) and type the same name in themselves.
+* **Fields set:** `project_name` (from `cen_project_name`), `company`, `customer` (from `party_name`, only when Quotation To is "Customer"), `expected_start_date` (the Quotation's own `transaction_date`).
+* **Project Supervisor left blank:** `cen_project_supervisor` is mandatory on Project, but nothing on the Quotation says who that should be, so the insert uses `ignore_mandatory=True` and leaves it for whoever picks up the project to fill in.
+* **Idempotent:** Only runs when `cen_choose_project` is still empty, so re-saving the same Quotation never creates a second Project. The existing `sync_projects_on_validate` (section 1) then carries `cen_choose_project` into the standard `project` field on whatever gets mapped from this Quotation (e.g. a Sales Order), the same way it already does for an existing project chosen directly.
+
+## 6. Payment Term Dropdown
 * **Field:** Custom field `cen_payment_terms` (Payment Term) is an `Autocomplete` field. It lists the enabled records of the **Payment Term Option** master (`cen_contracting/doctype/payment_term_option/`), so users pick a standard term instead of typing it every time.
 * **Manual Entry:** When a customer's terms differ, users can still type any text. `public/js/payment_terms.js` sets `ignore_validation` on the field so typed values are kept, and loads the list through `get_payment_term_options` (whitelisted in `payment_term_option.py`, disabled options hidden).
 * **Default Term:** Ticking **Default** on a Payment Term Option fills it in automatically on new documents whose Payment Term is empty (`get_default_payment_term`, called from `payment_terms.js` on load) and lists it first in the dropdown. Documents created from another document keep the copied term. Only one option can be default (ticking it clears the others), and the default can't be disabled.
