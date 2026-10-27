@@ -19,14 +19,16 @@ def create_project_for_new_type(doc, method=None):
     if doc.get("cen_choose_project"):
         return
 
-    customer = doc.get("party_name") if doc.get("quotation_to") == "Customer" else None
-
+    # No customer set here, deliberately: ERPNext's own validate_proj_cust (Sales Order and
+    # Sales Invoice) blocks saving a document whose customer differs from its Project's customer,
+    # unless the Project's customer is blank. The client wants to freely rebill a Quotation's
+    # project to a different customer at Sales Order/Invoice stage, so the Project is left
+    # customer-agnostic rather than locked to whoever the originating Quotation was for.
     project = frappe.get_doc(
         {
             "doctype": "Project",
             "project_name": project_name,
             "company": doc.company,
-            "customer": customer,
             "expected_start_date": doc.transaction_date,
         }
     )
