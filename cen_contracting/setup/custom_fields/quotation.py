@@ -6,6 +6,7 @@ def get_quotation_fields():
                 "label": "Project Type",
                 "fieldtype": "Select",
                 "options": "Existing\nNew",
+                "default": "New",
                 "insert_after": "customer_name"
             },
             {

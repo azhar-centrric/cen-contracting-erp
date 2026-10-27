@@ -160,7 +160,10 @@ doc_events = {
 	},
 	"Quotation": {
 		"before_insert": "cen_contracting.overrides.quotation.version_control.increment_version_number",
-		"validate": "cen_contracting.overrides.opportunity.project_sync.sync_projects_on_validate"
+		"validate": [
+			"cen_contracting.overrides.opportunity.project_sync.sync_projects_on_validate",
+			"cen_contracting.overrides.quotation.project_creation.create_project_for_new_type"
+		]
 	},
 	"Sales Order": {
 		"validate": "cen_contracting.overrides.opportunity.project_sync.sync_projects_on_validate"
@@ -225,6 +228,9 @@ extend_doctype_class = {
 # override_doctype_dashboards = {
 # 	"Task": "cen_contracting.task.get_dashboard_data"
 # }
+override_doctype_dashboards = {
+	"Project": "cen_contracting.overrides.project.quotation_link.add_quotation_connection"
+}
 
 # exempt linked doctypes from being automatically cancelled
 #
