@@ -16,6 +16,13 @@
 		);
 
 		frm.toggle_display("more_info_tab", !should_hide);
+
+		// toggle_display only flips the field's hidden flag - the tab strip itself (the row of tab
+		// buttons at the top of the form) only re-reads that flag inside refresh_tabs(), which isn't
+		// triggered on its own since this field has no depends_on driving the normal dependency
+		// refresh cycle. Without this call the tab button stays visible even though its content
+		// (correctly) becomes empty.
+		frm.layout.refresh_tabs();
 	}
 
 	for (const doctype of DOCTYPES) {
