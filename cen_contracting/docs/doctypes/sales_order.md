@@ -23,3 +23,7 @@
 * **Default Term:** Ticking **Default** on a Payment Term Option fills it in automatically on new documents whose Payment Term is empty (`get_default_payment_term`, called from `payment_terms.js` on load) and lists it first in the dropdown. Documents created from another document keep the copied term. Only one option can be default (ticking it clears the others), and the default can't be disabled.
 * **Managing Options:** Add, edit or disable terms in the Payment Term Option list (System Manager and Sales Manager can edit; Sales User and Accounts User can read).
 * **Conversion Patch:** The field was originally `Data`. Frappe doesn't allow Data -> Autocomplete on a Custom Field, so `patches/payment_terms_to_autocomplete.py` switches it in place during `bench migrate` (both are varchar(140), existing values are kept).
+
+## 6. Per-User "More Info" Tab Visibility
+* Same mechanism as Quotation (see its docs, section 7) - `public/js/more_info_tab_visibility.js` hides the tab only for users listed in **More Info Tab Settings**, checked on every form `refresh`. Visible by default.
+* **Different fieldname:** Sales Order's tab is `more_info`, not `more_info_tab` like Quotation/Sales Invoice - the script keys the fieldname per doctype (`TAB_FIELDNAME_BY_DOCTYPE`).
