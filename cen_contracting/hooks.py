@@ -48,11 +48,11 @@ app_include_js = [
 # include js in doctype views
 doctype_js = {
     "Sales Order": ["public/js/sales_order.js", "public/js/project_filters.js", "public/js/payment_terms.js"],
-    "Quotation": ["public/js/quotation.js", "public/js/project_filters.js", "public/js/payment_terms.js"],
+    "Quotation": ["public/js/quotation.js", "public/js/project_filters.js", "public/js/payment_terms.js", "public/js/more_info_tab_visibility.js"],
     "Lead": "public/js/lead.js",
     "Opportunity": "public/js/project_filters.js",
     "Project": "public/js/project.js",
-    "Sales Invoice": ["public/js/project_filters.js", "public/js/payment_terms.js"],
+    "Sales Invoice": ["public/js/project_filters.js", "public/js/payment_terms.js", "public/js/more_info_tab_visibility.js"],
     "Expense Claim": "public/js/expense_claim.js",
     "Employee Advance": "public/js/employee_advance.js"
 }

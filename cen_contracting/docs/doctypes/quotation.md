@@ -32,3 +32,9 @@
 * **Default Term:** Ticking **Default** on a Payment Term Option fills it in automatically on new documents whose Payment Term is empty (`get_default_payment_term`, called from `payment_terms.js` on load) and lists it first in the dropdown. Documents created from another document keep the copied term. Only one option can be default (ticking it clears the others), and the default can't be disabled.
 * **Managing Options:** Add, edit or disable terms in the Payment Term Option list (System Manager and Sales Manager can edit; Sales User and Accounts User can read).
 * **Conversion Patch:** The field was originally `Data`. Frappe doesn't allow Data -> Autocomplete on a Custom Field, so `patches/payment_terms_to_autocomplete.py` switches it in place during `bench migrate` (both are varchar(140), existing values are kept).
+
+## 7. Per-User "More Info" Tab Visibility
+* **Was:** A blanket Property Setter hid the standard `more_info_tab` for every user.
+* **Now:** The tab is visible by default; `public/js/more_info_tab_visibility.js` hides it only for users listed in the **More Info Tab Settings** single (`cen_contracting/doctype/more_info_tab_settings/`, child table `More Info Tab Hidden User`), checked against `frappe.session.user` on every form `refresh`. Only System Manager can edit the list; every user (role `All`) can read it, since the check runs for whoever has the form open.
+* **Same mechanism on Sales Invoice** (see its own docs file). Any further doctype can opt in by adding it to the `DOCTYPES` list in the same JS file and wiring it in `hooks.py`'s `doctype_js`.
+* **Cleanup patch:** `patches/remove_blanket_more_info_tab_hide.py` deletes the two Property Setters this replaced (`Quotation-more_info_tab-hidden`, created by `set_quotation_properties()`, and `Sales Invoice-more_info_tab-hidden`, which had been set directly via Customize Form and was never in code).
