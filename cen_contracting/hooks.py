@@ -53,6 +53,7 @@ doctype_js = {
     "Opportunity": "public/js/project_filters.js",
     "Project": "public/js/project.js",
     "Sales Invoice": ["public/js/project_filters.js", "public/js/payment_terms.js", "public/js/more_info_tab_visibility.js"],
+    "More Info Tab Settings": "public/js/more_info_tab_settings.js",
     "Expense Claim": "public/js/expense_claim.js",
     "Employee Advance": "public/js/employee_advance.js"
 }
