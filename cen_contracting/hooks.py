@@ -310,6 +310,7 @@ after_migrate = [
     "cen_contracting.setup.property_setter.purchase_invoice.set_purchase_invoice_properties",
     "cen_contracting.setup.property_setter.purchase_receipt.set_purchase_receipt_properties",
     "cen_contracting.setup.property_setter.supplier_quotation.set_supplier_quotation_properties",
+    "cen_contracting.setup.property_setter.address.set_address_properties",
     "cen_contracting.setup.roles.restore_suppressed_permissions.restore_suppressed_standard_permissions",
     "cen_contracting.overrides.all_doctypes.letter_head_routing.backfill_letter_head_routing"
 ]
