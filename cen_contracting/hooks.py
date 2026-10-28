@@ -47,12 +47,13 @@ app_include_js = [
 
 # include js in doctype views
 doctype_js = {
-    "Sales Order": ["public/js/sales_order.js", "public/js/project_filters.js", "public/js/payment_terms.js"],
-    "Quotation": ["public/js/quotation.js", "public/js/project_filters.js", "public/js/payment_terms.js"],
+    "Sales Order": ["public/js/sales_order.js", "public/js/project_filters.js", "public/js/payment_terms.js", "public/js/more_info_tab_visibility.js"],
+    "Quotation": ["public/js/quotation.js", "public/js/project_filters.js", "public/js/payment_terms.js", "public/js/more_info_tab_visibility.js"],
     "Lead": "public/js/lead.js",
     "Opportunity": "public/js/project_filters.js",
     "Project": "public/js/project.js",
-    "Sales Invoice": ["public/js/project_filters.js", "public/js/payment_terms.js"],
+    "Sales Invoice": ["public/js/project_filters.js", "public/js/payment_terms.js", "public/js/more_info_tab_visibility.js"],
+    "More Info Tab Settings": "public/js/more_info_tab_settings.js",
     "Expense Claim": "public/js/expense_claim.js",
     "Employee Advance": "public/js/employee_advance.js"
 }
@@ -302,6 +303,7 @@ after_migrate = [
     "cen_contracting.setup.roles.supervisor.setup_supervisor_role_and_workspace",
     "cen_contracting.setup.roles.accountant.setup_accountant_role",
     "cen_contracting.setup.roles.admin.setup_admin_role",
+    "cen_contracting.setup.roles.quotation_role.setup_quotation_role",
     "cen_contracting.setup.property_setter.employee_advance.set_employee_advance_properties",
     "cen_contracting.setup.property_setter.sales_order.set_sales_order_properties",
     "cen_contracting.setup.property_setter.sales_invoice.set_sales_invoice_properties",
@@ -309,6 +311,7 @@ after_migrate = [
     "cen_contracting.setup.property_setter.purchase_invoice.set_purchase_invoice_properties",
     "cen_contracting.setup.property_setter.purchase_receipt.set_purchase_receipt_properties",
     "cen_contracting.setup.property_setter.supplier_quotation.set_supplier_quotation_properties",
+    "cen_contracting.setup.property_setter.address.set_address_properties",
     "cen_contracting.setup.roles.restore_suppressed_permissions.restore_suppressed_standard_permissions",
     "cen_contracting.overrides.all_doctypes.letter_head_routing.backfill_letter_head_routing"
 ]

@@ -1,0 +1,48 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-10-28 12:00:00.000000",
+ "description": "Users listed here have the \"More Info\" tab hidden on Quotation, Sales Invoice, etc. Everyone else sees it normally.",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "hidden_for_users"
+ ],
+ "fields": [
+  {
+   "fieldname": "hidden_for_users",
+   "fieldtype": "Table",
+   "label": "Hide More Info Tab For",
+   "options": "More Info Tab Hidden User"
+  }
+ ],
+ "grid_page_length": 50,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-10-28 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Cen Contracting",
+ "name": "More Info Tab Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "All"
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
