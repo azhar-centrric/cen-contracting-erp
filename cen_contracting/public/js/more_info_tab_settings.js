@@ -9,8 +9,11 @@ frappe.ui.form.on("More Info Tab Settings", {
 				.map((row) => row.user)
 				.filter(Boolean);
 
+			// User's own link-search query (user_query in frappe/core/doctype/user/user.py) expects
+			// filters as a dict, not the usual list-of-conditions - a list crashes it ("'list' object
+			// has no attribute 'get'") since it calls filters.get() directly.
 			return {
-				filters: [["User", "name", "not in", other_users]],
+				filters: { name: ["not in", other_users] },
 			};
 		});
 	},
