@@ -7,7 +7,13 @@
 	const SETTINGS_DOCTYPE = "More Info Tab Settings";
 
 	async function apply_more_info_tab_visibility(frm) {
-		if (!frm.fields_dict.more_info_tab) return;
+		// The tab button itself (the row of tab buttons at the top of the form) is a separate Tab
+		// object in frm.layout.tabs, with its own df - toggle_display() only mutates the df on the
+		// field Control in frm.fields_dict, which Tab.refresh() never reads, so the button stayed
+		// visible even once the tab's content correctly went empty. Set the Tab's own df.hidden
+		// directly instead.
+		const tab = frm.layout.tabs?.find((t) => t.df.fieldname === "more_info_tab");
+		if (!tab) return;
 
 		await frappe.model.with_doc(SETTINGS_DOCTYPE, SETTINGS_DOCTYPE);
 		const settings = frappe.get_doc(SETTINGS_DOCTYPE, SETTINGS_DOCTYPE);
@@ -15,13 +21,7 @@
 			(row) => row.user === frappe.session.user
 		);
 
-		frm.toggle_display("more_info_tab", !should_hide);
-
-		// toggle_display only flips the field's hidden flag - the tab strip itself (the row of tab
-		// buttons at the top of the form) only re-reads that flag inside refresh_tabs(), which isn't
-		// triggered on its own since this field has no depends_on driving the normal dependency
-		// refresh cycle. Without this call the tab button stays visible even though its content
-		// (correctly) becomes empty.
+		tab.df.hidden = should_hide ? 1 : 0;
 		frm.layout.refresh_tabs();
 	}
 
