@@ -303,6 +303,7 @@ after_migrate = [
     "cen_contracting.setup.roles.supervisor.setup_supervisor_role_and_workspace",
     "cen_contracting.setup.roles.accountant.setup_accountant_role",
     "cen_contracting.setup.roles.admin.setup_admin_role",
+    "cen_contracting.setup.roles.quotation_role.setup_quotation_role",
     "cen_contracting.setup.property_setter.employee_advance.set_employee_advance_properties",
     "cen_contracting.setup.property_setter.sales_order.set_sales_order_properties",
     "cen_contracting.setup.property_setter.sales_invoice.set_sales_invoice_properties",
